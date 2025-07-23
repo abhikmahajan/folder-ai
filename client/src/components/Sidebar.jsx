@@ -15,12 +15,21 @@ const navItems = [
 ]
 
 const Sidebar = ({sidebar, setSidebar}) => {
-
     const {user} = useUser()
     const {signOut, openUserProfile} = useClerk()
 
-  return (
-    <div className={`w-60 bg-white border-r border-gray-200 flex flex-col justify-between items-center max-sm:absolute top-14 bottom-0 ${sidebar ? 'translate-x-0' : 'max-sm:translate-x-full'} transition-all duration-300 ease-in-out `}>
+    return (
+        <>
+    
+      {/* Mobile Overlay */}
+      <div 
+        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 sm:hidden ${
+          sidebar ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setSidebar(false)}
+      />
+      
+    <div className={`w-60 bg-white border-r border-gray-200 flex flex-col justify-between items-center sm:relative max-sm:fixed max-sm:z-50 top-14 bottom-0 ${sidebar ? 'translate-x-0' : 'max-sm:-translate-x-full'} transition-all duration-300 ease-in-out`}>
         <div className='my-7 w-full'>
             <img src={user.imageUrl} alt='User avatar' className='w-13 rounded-full mx-auto'/>
             <h1 className='mt-1 text-center'>{user.fullName}</h1>
@@ -51,6 +60,7 @@ const Sidebar = ({sidebar, setSidebar}) => {
               <LogOut onClick={signOut}  className='w-4.5 text-gray-400 hover:text-gray-700 transition cursor-pointer'/>
         </div>
     </div>
+    </>
   )
 }
 

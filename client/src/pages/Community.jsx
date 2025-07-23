@@ -74,7 +74,7 @@ const Community = () => {
       </div>
     </div>
   ) : (
-    <div className=' h-full flex items-center justify-center'>
+    <div className=' h-3/4 flex items-center justify-center '>
       <span className='w-10 h-10 my-1 rounded-full border-3 border-primary border-t-transparent animate-spin'></span>
     </div>
   )
