@@ -234,13 +234,13 @@ export const resumeReview = async (req, res) =>{
         const dataBuffer = fs.readFileSync(resume.path);
         const pdfData = await pdf(dataBuffer);
 
-        const prompt = `Review the following resume and provide constructive feedback on its strengths, weaknesses, and areas for improvement and write it in atleast 6000 words please.Resume Content:\n\n${pdfData.text}`;
+        const prompt = `Review the following resume and provide constructive feedback on its strengths, weaknesses, and areas for improvement. Resume Content:\n\n${pdfData.text}`;
 
          const response = await AI.chat.completions.create({
     model: "gemini-2.0-flash",
     messages: [{ role: "user", content: prompt,} ],
     temperature: 0.7,
-    max_tokens: 100,
+    max_tokens: 1000,
 });
 
 const content = response.choices[0].message.content
